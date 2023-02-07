@@ -105,7 +105,7 @@ class QGen:
     def predict_shortq(self, payload):
         inp = {
             "input_text": payload.get("input_text"),
-            "max_questions": payload.get("max_questions", 4)
+            "max_questions": payload.get("max_questions", 10)
         }
 
         text = inp['input_text']
@@ -131,7 +131,7 @@ class QGen:
         else:
             
             generated_questions = generate_normal_questions(keyword_sentence_mapping,self.device,self.tokenizer,self.model)
-            print(generated_questions)
+            print("***************Generated Questions:***********",generated_questions)
 
             
         final_output["statement"] = modified_text
