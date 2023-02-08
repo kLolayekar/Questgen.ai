@@ -136,7 +136,8 @@ def filter_phrases(phrase_keys,max,normalized_levenshtein ):
     if len(phrase_keys)>0:
         filtered_phrases.append(phrase_keys[0])
         for ph in phrase_keys[1:]:
-            if is_far(filtered_phrases,ph,0.7,normalized_levenshtein ):
+            #if is_far(filtered_phrases,ph,0.7,normalized_levenshtein ):
+            if is_far(filtered_phrases,ph,0.5,normalized_levenshtein ):
                 filtered_phrases.append(ph)
             if len(filtered_phrases)>=max:
                 break
@@ -184,6 +185,7 @@ def get_phrases(doc):
     phrase_keys=list(phrases.keys())
     phrase_keys = sorted(phrase_keys, key= lambda x: len(x),reverse=True)
     phrase_keys=phrase_keys[:50]
+    print("phrase_keys:" , phrase_keys)
     return phrase_keys
 
 
@@ -202,7 +204,7 @@ def get_keywords(nlp,text,max_keywords,s2v,fdist,normalized_levenshtein,no_of_se
     total_phrases = keywords + filtered_phrases
    #total_phrases_filtered = filter_phrases(total_phrases, min(max_keywords, 2*no_of_sentences),normalized_levenshtein )
 
-    total_phrases_filtered = filter_phrases(total_phrases, min(max_keywords, 10*no_of_sentences),normalized_levenshtein )
+    total_phrases_filtered = filter_phrases(total_phrases, min(max_keywords, 100*no_of_sentences),normalized_levenshtein )
 
 
     answers = []
