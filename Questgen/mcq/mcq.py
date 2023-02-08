@@ -200,8 +200,9 @@ def get_keywords(nlp,text,max_keywords,s2v,fdist,normalized_levenshtein,no_of_se
     filtered_phrases = filter_phrases(phrase_keys, max_keywords,normalized_levenshtein )
 
     total_phrases = keywords + filtered_phrases
+   #total_phrases_filtered = filter_phrases(total_phrases, min(max_keywords, 2*no_of_sentences),normalized_levenshtein )
 
-    total_phrases_filtered = filter_phrases(total_phrases, min(max_keywords, 2*no_of_sentences),normalized_levenshtein )
+    total_phrases_filtered = filter_phrases(total_phrases, min(max_keywords, 10*no_of_sentences),normalized_levenshtein )
 
 
     answers = []
@@ -278,7 +279,7 @@ def generate_normal_questions(keyword_sent_mapping,device,tokenizer,model):  #fo
     with torch.no_grad():
         outs = model.generate(input_ids=input_ids,
                               attention_mask=attention_masks,
-                              max_length=150)
+                              max_length=500)
 
     output_array ={}
     output_array["questions"] =[]
@@ -292,9 +293,9 @@ def generate_normal_questions(keyword_sent_mapping,device,tokenizer,model):  #fo
         Question= Question.strip()
 
         individual_quest['Question']= Question
-        individual_quest['Answer']= val
+        #individual_quest['Answer']= val
         individual_quest["id"] = index+1
-        individual_quest["context"] = keyword_sent_mapping[val]
+        #individual_quest["context"] = keyword_sent_mapping[val]
         
         output_array["questions"].append(individual_quest)
         
