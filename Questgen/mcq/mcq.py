@@ -204,7 +204,7 @@ def get_keywords(nlp,text,max_keywords,s2v,fdist,normalized_levenshtein,no_of_se
     total_phrases = keywords + filtered_phrases
    #total_phrases_filtered = filter_phrases(total_phrases, min(max_keywords, 2*no_of_sentences),normalized_levenshtein )
 
-    total_phrases_filtered = filter_phrases(total_phrases, min(max_keywords, 100*no_of_sentences),normalized_levenshtein )
+    total_phrases_filtered = filter_phrases(total_phrases, max(max_keywords, 20*no_of_sentences),normalized_levenshtein )
 
 
     answers = []
