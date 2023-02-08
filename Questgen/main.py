@@ -105,7 +105,7 @@ class QGen:
     def predict_shortq(self, payload):
         inp = {
             "input_text": payload.get("input_text"),
-            "max_questions": payload.get("max_questions", 10)
+            "max_questions": payload.get("max_questions", 20)
         }
 
         text = inp['input_text']
@@ -115,7 +115,7 @@ class QGen:
 
 
         keywords = get_keywords(self.nlp,modified_text,inp['max_questions'],self.s2v,self.fdist,self.normalized_levenshtein,len(sentences) )
-
+        print("keywords: ", keywords)
 
         keyword_sentence_mapping = get_sentences_for_keyword(keywords, sentences)
         
@@ -139,7 +139,7 @@ class QGen:
         
         if torch.device=='cuda':
             torch.cuda.empty_cache()
-
+        print("final_output **********", final_output)
         return final_output
             
   
