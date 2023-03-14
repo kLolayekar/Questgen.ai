@@ -21,7 +21,8 @@ nltk.download('stopwords')
 nltk.download('popular')
 from nltk.corpus import stopwords
 from nltk.corpus import brown
-from similarity.normalized_levenshtein import NormalizedLevenshtein
+#from similarity.normalized_levenshtein import NormalizedLevenshtein
+rom strsimpy.normalized_levenshtein import NormalizedLevenshtein
 from nltk.tokenize import sent_tokenize
 from flashtext import KeywordProcessor
 from Questgen.encoding.encoding import beam_search_decoding
